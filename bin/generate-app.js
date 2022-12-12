@@ -18,7 +18,7 @@ const git_repo = "https://github.com/chescobar2brains/bch_modyo_base";
 try {
     fs.mkdirSync(projectPath);
 } catch (err) {
-    if (err.code === 'EEXIST') {
+    if (err.code === 'EXIST') {
         console.log(`The file ${projectName} already exist in the current directory, please give it another name.`);
     } else {
         console.log(error);
@@ -30,7 +30,7 @@ const changeNameWidget = () => {
     const envFile = fs.readFileSync('.env', 'utf-8')
     const newEnv = envFile.replace('ID-TO-RENDER-CONTENT', projectName).replace('NAME-OF-WIDGET', projectName)
     fs.writeFileSync('.env', newEnv, 'utf-8')
-    console.log('enviroments variables complete');
+    console.log('Updated environment variables');
 
 }
 
@@ -45,7 +45,7 @@ async function main() {
         console.log('Installing dependencies...');
         execSync('npm install');
 
-        console.log('Removing useless files');
+        console.log('Removing useless files...');
         execSync('npx rimraf ./.git');
 
         console.log('The installation is done, this is ready to use !');
