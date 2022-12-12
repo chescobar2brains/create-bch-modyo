@@ -26,9 +26,9 @@ try {
     process.exit(1);
 }
 
-const changeNameWidget = (widgetName) => {
+const changeNameWidget = () => {
     const envFile = fs.readFileSync('.env', 'utf-8')
-    const newEnv = envFile.replace('ID-TO-RENDER-CONTENT', widgetName).replace('NAME-OF-WIDGET', widgetName)
+    const newEnv = envFile.replace('ID-TO-RENDER-CONTENT', projectName).replace('NAME-OF-WIDGET', projectName)
     fs.writeFileSync('.env', newEnv, 'utf-8')
     console.log('enviroments variables complete');
 
@@ -40,7 +40,7 @@ async function main() {
         execSync(`git clone --depth 1 ${git_repo} ${projectPath}`);
 
         process.chdir(projectPath);
-        changeNameWidget(projectPath)
+        changeNameWidget();
 
         console.log('Installing dependencies...');
         execSync('npm install');
