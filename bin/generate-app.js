@@ -27,10 +27,10 @@ try {
 }
 
 const changeNameWidget = (widgetName) => {
-    const env = fs.readFileSync('.env')
-    const newEnv = env.replace('ID-TO-RENDER-CONTENT', widgetName).replace('NAME-OF-WIDGET', widgetName)
+    const envFile = fs.readFileSync('.env', 'utf-8')
+    const newEnv = envFile.replace('ID-TO-RENDER-CONTENT', widgetName).replace('NAME-OF-WIDGET', widgetName)
     fs.rm('.env')
-    fs.writeFileSync('.env', newEnv)
+    fs.writeFileSync('.env', newEnv, 'utf-8')
     console.log('enviroments variables complete');
 
 }
